@@ -303,7 +303,8 @@ class GridDataset(object):
         self.coordinates = x_name, y_name
         self.vars = dict()
         self.indexs = dict() if indexs is None else indexs
-        self.nc4file = Dataset(filename, "r") if nc4file is None else nc4file
+        if not unset: 
+            self.nc4file = Dataset(filename, "r") if nc4file is None else nc4file
         if centered is None:
             logger.warning(
                 "We assume pixel position of grid is centered for %s", filename
